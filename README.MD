@@ -4,6 +4,6 @@ Universidade Metodista de São Paulo
 
 Aluno: Silas Ferreira - 333044
 
-### Como usar:
+### Como usar a calculadora:
 
 ![Usage](chrome-capture-2023-8-28.gif)
