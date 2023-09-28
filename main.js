@@ -1,47 +1,74 @@
-let precoUnitario = document.querySelector("#precoUnitario");
-let quantidadeProduto = document.querySelector("#quantidadeProduto");
-let calcularButton = document.querySelector("#calcularButton");
-let resultadoLista = document.querySelector("#resultadoLista");
+// Retrieve stored data from localStorage if available
+let resultados = JSON.parse(localStorage.getItem('resultados')) || [];
+const resultadoLista = document.querySelector("#resultadoLista");
 
-let resultados = [];
+// Function to display stored results
+function displayStoredResults() {
+  resultadoLista.innerHTML = "";
+
+  resultados.forEach(function (result, index) {
+    console.log(result)
+    const { TOTAL, pu, qtd } = result
+    console.log(TOTAL, pu, qtd)
+    let novoResultadoItem = document.createElement("li");
+
+    let botaoRemover = document.createElement("button");
+    botaoRemover.type = "button";
+    botaoRemover.textContent = "❌";
+    botaoRemover.addEventListener("click", function () {
+      // Find the index of the item in the list
+      let index = resultados.indexOf(result);
+
+      if (index !== -1) {
+        // Remove the item from the list
+        resultados.splice(index, 1);
+        resultadoLista.removeChild(novoResultadoItem);
+
+        // Update the localStorage after removing
+        localStorage.setItem('resultados', JSON.stringify(resultados));
+      }
+      displayStoredResults()
+
+    });
+
+    novoResultadoItem.addEventListener("click", function () {
+      navigator.clipboard.writeText(TOTAL);
+    });
+
+    // novoResultadoItem.innerHTML = `${index + 1})<br> TOTAL: R$ ${TOTAL}`;
+    novoResultadoItem.innerHTML = `${resultados.length})<br> PU: R$ ${pu} <br> UN: ${qtd} <br> TOTAL: R$ ${TOTAL}`;
+    novoResultadoItem.appendChild(botaoRemover);
+
+    resultadoLista.appendChild(novoResultadoItem);
+  });
+}
+
+window.addEventListener('load', displayStoredResults);
+
+let calcularButton = document.querySelector("#calcularButton");
 
 calcularButton.addEventListener("click", function () {
-  let preco = parseFloat(precoUnitario.value);
-  let quantidade = parseInt(quantidadeProduto.value);
-  const TOTAL = preco * quantidade;
+  let precoUnitario = parseFloat(document.querySelector("#precoUnitario").value);
+  let quantidadeProduto = parseInt(document.querySelector("#quantidadeProduto").value);
+  const TOTAL = precoUnitario * quantidadeProduto;
 
-  resultados.push(TOTAL);
+  const novoResultado = {
+    TOTAL: TOTAL.toFixed(2),
+    pu: precoUnitario,
+    qtd: quantidadeProduto,
+  };
 
-  // Exibir o resultado na lista
-  let novoResultadoItem = document.createElement("li");
+  // resultados.push(TOTAL.toFixed(2));
+  resultados.push(novoResultado)
 
-  let botaoRemover = document.createElement("button");
-  botaoRemover.type = "button"
-  botaoRemover.textContent = "❌";
-  botaoRemover.addEventListener("click", function () {
-    // Encontrar o índice do item na lista
-    let index = resultados.indexOf(TOTAL);
 
-    if (index !== -1) {
-      // Remove o item da lista
-      resultados.splice(index, 1);
-      resultadoLista.removeChild(novoResultadoItem);
-    }
-  });
+  // Update the localStorage after adding a new item
+  localStorage.setItem('resultados', JSON.stringify(resultados));
 
-  // copiar o item ao clicar
-  novoResultadoItem.addEventListener("click", function () {
-    // let itemCopiado = novoResultadoItem.textContent.replace("❌", "");
-    navigator.clipboard.writeText(TOTAL)
-  });
+  // Display the new result
+  displayStoredResults();
 
-  // novoResultadoItem.textContent = `${resultados.length} - Total: R$ ${TOTAL.toFixed(2)}`;
-  novoResultadoItem.innerHTML = `${resultados.length})<br> PU: R$ ${preco.toFixed(2)} <br> UN: ${quantidade} <br> TOTAL: R$ ${TOTAL.toFixed(2)}`;
-  novoResultadoItem.appendChild(botaoRemover);
-
-  resultadoLista.appendChild(novoResultadoItem);
-
-  // Limpar os campos de entrada
-  precoUnitario.value = "";
-  quantidadeProduto.value = "";
+  // Clear the input fields
+  document.querySelector("#precoUnitario").value = "";
+  document.querySelector("#quantidadeProduto").value = "";
 });

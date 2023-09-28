@@ -72,12 +72,15 @@ button:hover {
 
 /* Estilo para a lista de resultados */
 #resultadoLista {
+    margin: 0 2em;
     list-style: none;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
 }
 
 #resultadoLista li {
+    width: 44%;
     background-color: #f5f5f5;
     border: 1px solid #ccc;
     margin: 5px 0;
