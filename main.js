@@ -7,9 +7,9 @@ function displayStoredResults() {
   resultadoLista.innerHTML = "";
 
   resultados.forEach(function (result, index) {
-    console.log(result)
+    // console.log(result)
     const { TOTAL, pu, qtd } = result
-    console.log(TOTAL, pu, qtd)
+    // console.log(TOTAL, pu, qtd)
     let novoResultadoItem = document.createElement("li");
 
     let botaoRemover = document.createElement("button");
