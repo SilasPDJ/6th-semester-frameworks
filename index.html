@@ -9,7 +9,29 @@
 </head>
 
 <body>
+    <div id="resultado">
+        <!-- A lista de resultados será exibida aqui -->
+        <ul id="resultadoLista"></ul>
+    </div>
     <main>
+        <h2>Aluno: Silas Ferreira - 333044</h2>
+        <h3>
+            14358 - DESENVOLVIMENTO DE APLICAÇÕES COM FRAMEWORKS
+        </h3>
+
+        <p class="enunciado">Desenvolva uma página web para uma determinada loja que precisa calcular o preço de venda
+            de um produto. O
+            cálculo deve ser efetuado por meio da multiplicação do preço unitário x quantidade vendida e, posteriormente
+            subtraído o valor do desconto. Considere todas as variáveis do tipo de dado real, que serão digitadas pelo
+            usuário, e um script interno que contenha as funções necessárias para resolver o programa.
+
+        </p>
+        <div class="instrucoes">
+            <h3>Instruções: </h3>
+            <p>- Clique no Resultado para copiar para o clipboard</p>
+            <p>- Pressione ❌ para excluir o resultado </p>
+        </div>
+
         <label for="precoUnitario">
             PREÇO
             <input type="number" name="precoUnitario" id="precoUnitario">
@@ -21,9 +43,6 @@
         <button type="button" id="calcularButton">
             CALCULAR
         </button>
-        <div id="resultado">
-            <!-- O resultado será exibido aqui -->
-        </div>
     </main>
 
     <script src="main.js"></script>

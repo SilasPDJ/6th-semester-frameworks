@@ -1,6 +1,8 @@
 body,
 h1,
 h2,
+h3,
+h4,
 p,
 ul,
 li {
@@ -23,6 +25,23 @@ main {
     margin: 0 auto;
 }
 
+.enunciado {
+    text-align: justify;
+    margin: 1em 0 1em 0;
+
+}
+
+.instrucoes {
+    margin: .5em 0 1.5em 0;
+
+}
+
+.instrucoes h3,
+.instrucoes p {
+    margin: .5em 0;
+    text-align: start;
+}
+
 label {
     display: block;
     margin-bottom: 10px;
@@ -43,8 +62,56 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0 20px 0;
 }
 
 button:hover {
     background-color: #0056b3;
+}
+
+/* Estilo para a lista de resultados */
+#resultadoLista {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+#resultadoLista li {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    display: flex;
+    /* Para usar flexbox */
+    justify-content: space-between;
+    align-items: center;
+    text-align: justify;
+    padding: 0 20px;
+}
+
+#resultadoLista button {
+    background-color: #f5f5f5;
+    font-size: 2.5em;
+}
+
+#resultadoLista li:hover,
+#resultadoLista li:hover button {
+    background-color: #e0e0e0;
+}
+
+/* Estilo para o botão de limpar resultados */
+#limparResultados {
+    background-color: #dc3545;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#limparResultados:hover {
+    background-color: #c82333;
 }
